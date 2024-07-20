@@ -1,6 +1,5 @@
 import React from 'react';
 import { FileDrop } from 'react-file-drop';
-import iconPng from '../assets/svg/icon.png'; // Adjust the path according to your directory structure
 
 const UploadBox = ({ onBack }) => {
   const handleDrop = (files) => {
@@ -9,7 +8,8 @@ const UploadBox = ({ onBack }) => {
   };
 
   return (
-    <div className="relative w-[95%] h-[95%] md:w-[95%] md:h-[90%] lg:w-[90%] lg:h-[85%] mx-auto flex items-center justify-center">
+    // change the % to change size of the whole box
+    <div className="relative w-[95%] h-[95%] md:w-[95%] md:h-[90%] lg:w-[90%] lg:h-[85%] mx-auto flex items-center justify-center"> 
       <div
         className="relative z-10 w-full h-full p-8 bg-[#2E2A5C] rounded-lg flex flex-col items-start justify-start text-left"
         style={{
@@ -27,7 +27,10 @@ const UploadBox = ({ onBack }) => {
         <div className="w-full mb-6 flex justify-center">
           <FileDrop
             onDrop={handleDrop}
-            className="w-[80%] h-60 border-4 border-dashed border-white bg-[rgba(255,255,255,0.1)] rounded-lg flex items-center justify-center text-white text-lg shadow-lg hover:shadow-xl transition-shadow duration-300 font-sans"
+
+            // same here change % and h
+
+            className="w-[50%] h-60 border-4 border-dashed border-white bg-[rgba(255,255,255,0.1)] rounded-lg flex items-center justify-center text-white text-lg shadow-lg hover:shadow-xl transition-shadow duration-300 font-sans"
             style={{
               border: '2px dashed #72a4d2',
               color: '#72a4d2',

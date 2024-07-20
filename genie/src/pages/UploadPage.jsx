@@ -9,7 +9,7 @@ const UploadPage = () => {
     <div className="flex flex-col h-screen relative">
       {/* Navbar */}
       <Navbar />
-
+      
       {/* Main content area */}
       <main className="flex-grow flex flex-col items-center p-4 relative z-10">
         {/* Gradient Background */}
@@ -20,6 +20,7 @@ const UploadPage = () => {
                zIndex: -1
              }}>
         </div>
+        
         {/* Upload Box */}
         <UploadBox />
         {/* How It Works Section */}
