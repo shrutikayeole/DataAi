@@ -37,62 +37,53 @@ const Navbar = () => {
   }, [mobileDrawerOpen]);
 
   return (
-    <nav className="sticky top-0 z-50 py-3 backdrop-blur-lg bg-dark text-white">
-      <div className="container px-4 mx-auto lg:text-sm">
-        <div className="flex justify-between items-center">
-          <div className="flex items-center flex-shrink-0">
-            <span className="text-xl font-bold tracking-tight">Logo</span>
-          </div>
-          <ul className="hidden lg:flex ml-14 space-x-8">
+    <nav className="sticky top-0 z-50 py-3 px-4 background-color: rgba(0,0,0,0.0) text-white">
+      <div className="container mx-auto flex items-center justify-between">
+        <div className="text-xl font-bold tracking-tight">
+          DataAI
+        </div>
+        <ul className="hidden lg:flex space-x-8 flex items-center justify-center">
+          {navItems.map((item, index) => (
+            <li key={index}>
+              <Link
+                to={item.href}
+                smooth={true}
+                duration={500}
+                className="text-white hover:text-secondary cursor-pointer"
+              >
+                {item.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <div className="lg:hidden flex justify-end">
+          <button onClick={toggleNavbar} className="text-white">
+            {mobileDrawerOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
+      </div>
+      {mobileDrawerOpen && (
+        <div
+          ref={drawerRef}
+          className="fixed top-0 right-0 z-50 bg-dark w-full p-8 flex flex-col justify-center items-center lg:hidden"
+        >
+          <ul className="text-white">
             {navItems.map((item, index) => (
-              <li key={index}>
+              <li key={index} className="py-4">
                 <Link
                   to={item.href}
                   smooth={true}
                   duration={500}
-                  className="text-white hover:text-primary cursor-pointer"
+                  className="hover:text-primary cursor-pointer"
+                  onClick={toggleNavbar}
                 >
                   {item.label}
                 </Link>
               </li>
             ))}
           </ul>
-          <div className="hidden lg:flex justify-center items-center">
-            <a href="#" className="py-2 px-4 rounded-md bg-gradient-to-r from-primary to-secondary text-white hover:from-accent hover:to-primary">
-              Try It
-            </a>
-          </div>
-          <div className="lg:hidden md:flex flex-col justify-end">
-            <button onClick={toggleNavbar} className="text-white">
-              {mobileDrawerOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
         </div>
-        {mobileDrawerOpen && (
-          <div ref={drawerRef} className="fixed top-0 right-0 z-50 bg-dark w-full p-8 flex flex-col justify-center items-center lg:hidden">
-            <ul className="text-white">
-              {navItems.map((item, index) => (
-                <li key={index} className="py-4">
-                  <Link
-                    to={item.href}
-                    smooth={true}
-                    duration={500}
-                    className="hover:text-primary cursor-pointer"
-                    onClick={toggleNavbar}
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-            <div className="flex flex-col mt-8 space-y-4">
-              <a href="#" className="py-2 px-4 rounded-md bg-gradient-to-r from-primary to-secondary text-white hover:from-accent hover:to-primary">
-                Try It
-              </a>
-            </div>
-          </div>
-        )}
-      </div>
+      )}
     </nav>
   );
 };
