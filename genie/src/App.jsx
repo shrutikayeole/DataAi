@@ -10,10 +10,11 @@ function App() {
   return (
     <Router>
       <Routes>
+      <Route path="/" element={<AIPage />} />
       <Route path="/" element={<RetailerPage />} />
       <Route path="/" element={<UploadPage />} />
       <Route path="/" element={<HomePage />} />
-        <Route path="/ai" element={<AIPage />} />
+
       </Routes>
     </Router>
   );

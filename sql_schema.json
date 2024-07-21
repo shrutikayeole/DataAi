@@ -1,0 +1,16 @@
+{
+    "tables": {
+        "inventory": [
+            "id",
+            "product_name",
+            "quantity",
+            "price"
+        ],
+        "messages": [
+            "id",
+            "user_message",
+            "bot_response",
+            "created_at"
+        ]
+    }
+}
