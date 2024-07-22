@@ -1,43 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 
 const ChatWindow = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
-  const [loading, setLoading] = useState(false); // Loading state
-
-  useEffect(() => {
-    // Fetch conversation history when the component mounts
-    const fetchHistory = async () => {
-      try {
-        const response = await axios.get('http://localhost:5000/get_history');
-        if (response.data.conversations.length > 0) {
-          setMessages(response.data.conversations[0]); // Assuming you want to load the first conversation
-        }
-      } catch (error) {
-        console.error('Error fetching conversation history:', error);
-      }
-    };
-
-    fetchHistory();
-  }, []);
+  const [loading, setLoading] = useState(false);
 
   const handleSendMessage = async () => {
     if (input.trim()) {
       const newMessages = [...messages, { text: input, sender: 'user' }];
       setMessages(newMessages);
       setInput('');
-      setLoading(true); // Set loading to true when sending the message
+      setLoading(true);
 
       try {
         const response = await axios.post('http://localhost:5000/ask', { question: input });
         const botResponse = response.data.data.join('\n');
         const updatedMessages = [...newMessages, { text: botResponse, sender: 'bot' }];
         setMessages(updatedMessages);
-        setLoading(false); // Set loading to false after receiving the response
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching response:", error);
-        setLoading(false); // Ensure loading is turned off in case of error
+        setLoading(false);
       }
     }
   };
@@ -64,7 +48,7 @@ const ChatWindow = () => {
         <textarea
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          className="flex-grow px-4 py-2 border border-gray-300 rounded-3-md focus:outline-none focus:ring focus:border-primary bg-gray-800 text-white resize-none h-12"
+          className="flex-grow px-4 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring focus:border-primary bg-gray-800 text-white resize-none h-12"
           placeholder="Ask DataAi anything about your database..."
         />
         <button

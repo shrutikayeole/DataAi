@@ -5,11 +5,13 @@ import HomePage from './pages/HomePage';
 import AIPage from './pages/ai';
 import UploadPage from './pages/UploadPage';
 import RetailerPage from './pages/RetailerPage';
+import SpeechPage from './pages/SpeechPage';
 
 function App() {
   return (
     <Router>
       <Routes>
+      <Route path="/" element={<SpeechPage/>} />
       <Route path="/" element={<AIPage />} />
       <Route path="/" element={<RetailerPage />} />
       <Route path="/" element={<UploadPage />} />
